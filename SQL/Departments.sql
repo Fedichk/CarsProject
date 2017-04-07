@@ -1,0 +1,13 @@
+SET SERVEROUTPUT ON
+DECLARE
+
+A INTEGER;
+B INTEGER;
+
+BEGIN
+A := 2;
+B := 3;
+DBMS_OUTPUT.enable;
+DBMS_OUTPUT.put_line(A*B);
+END;
+/
