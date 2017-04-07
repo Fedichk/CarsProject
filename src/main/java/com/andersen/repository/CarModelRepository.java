@@ -12,5 +12,5 @@ public interface CarModelRepository extends JpaRepository<CarModel, Long> {
 
     @Procedure(name = "save_model")
     String saveModel(@Param("paramModelName") String modelName, @Param("paramYear") Integer manufacturedYear,
-                     @Param("paramPrice") Long price, @Param("paramManufactureId") Long manufacturedId );
+                     @Param("paramPrice") Long price, @Param("paramManufactureId") Long manufacturedId);
 }

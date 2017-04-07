@@ -21,20 +21,33 @@ repositories {
     mavenLocal()
 }
 
+configurations.all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile('org.springframework.boot:spring-boot-starter-security')
+//        exclude group:'ch.qos.logback', module: 'logback-classic'
+
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.projectlombok:lombok')
     compile('com.oracle:ojdbc6:11.2.0.4')
     compile('com.sun.faces:jsf-api:2.2.14')
     compile('com.sun.faces:jsf-impl:2.2.14')
     compile('org.primefaces:primefaces:6.0')
-    compile ('com.sun.el:el-ri:1.0')
-    compile ('jstl:jstl:1.2')
-    compile ('javax.servlet:jstl:1.2')
-    compile ('org.apache.tomcat.embed:tomcat-embed-jasper:8.5.12')
+    compile('com.sun.el:el-ri:1.0')
+    compile('jstl:jstl:1.2')
+    compile('javax.servlet:jstl:1.2')
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper:8.5.12')
+    compile('org.slf4j:slf4j-api:1.7.25')
+    compile('org.apache.logging.log4j:log4j-slf4j-impl:2.8.1')
+    compile('org.apache.logging.log4j:log4j-api:2.8.1')
+    compile('org.apache.logging.log4j:log4j-core:2.8.1')
+    compile('org.apache.logging.log4j:log4j-jcl:2.8.1')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -6,7 +6,10 @@ import com.andersen.repository.CarModelRepository;
 import com.andersen.repository.CarRepository;
 import lombok.Data;
 import org.primefaces.event.SelectEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 
 import javax.faces.application.FacesMessage;
@@ -19,6 +22,7 @@ public class CarController {
 
     private final CarRepository carRepository;
     private final CarModelRepository modelRepository;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private String carName;
     private String carProductionCountry;
@@ -47,6 +51,7 @@ public class CarController {
         return modelRepository.findAll();
     }
 
+    @Secured("ROLE_ADMIN")
     public void save() {
         Car car = new Car();
         car.setCarName(carName);
@@ -63,6 +68,7 @@ public class CarController {
         modelRepository.saveAndFlush(model);
     }
 
+    @Secured("ROLE_ADMIN")
     public void saveModelByPlSql() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "", modelRepository.saveModel(modelName, modelYear, modelPrice, targetCar.getId())));
