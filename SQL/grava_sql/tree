@@ -1,0 +1,34 @@
+-- выбрать подчиненного и его начальников всех добавить уровни
+
+-- от генерального к уборщику
+-- SELECT
+--   SUPERID,
+--   lpad(' ', 2 * SUPERID - 1) || FIRSTNAME || ' ' || LASTNAME AS employee
+-- FROM EMPLOYEES
+-- START WITH ID=3 CONNECT BY PRIOR EMPLOYEES.ID = EMPLOYEES.SUPERID
+-- ORDER BY SUPERID
+
+-- от убощика к генеральному
+-- SELECT
+--   SUPERID,
+--   lpad(' ', 2 * SUPERID - 1) || FIRSTNAME || ' ' || LASTNAME AS employee
+-- FROM EMPLOYEES
+-- START WITH ID = 21 CONNECT BY PRIOR EMPLOYEES.SUPERID = EMPLOYEES.ID
+-- ORDER SIBLINGS BY SUPERID
+
+-- все дерево
+SELECT
+  SUPERID,
+  lpad(' ', 2 * SUPERID - 1) || FIRSTNAME || ' ' || LASTNAME AS employee
+FROM EMPLOYEES
+START WITH SUPERID IS NULL CONNECT BY PRIOR EMPLOYEES.ID = EMPLOYEES.SUPERID
+ORDER SIBLINGS BY SUPERID
+
+--только дерики
+-- SELECT
+--   SUPERID,
+--   lpad(' ', 2 * SUPERID - 1) || FIRSTNAME || ' ' || LASTNAME AS employee
+-- FROM EMPLOYEES
+-- START WITH SUPERID IS NULL CONNECT BY EMPLOYEES.ID = EMPLOYEES.SUPERID
+-- ORDER SIBLINGS BY SUPERID
+

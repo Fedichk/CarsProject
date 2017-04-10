@@ -16,6 +16,12 @@ import javax.persistence.*;
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "paramPrice", type = Long.class),
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "paramManufactureId", type = Long.class),
                         @StoredProcedureParameter(mode = ParameterMode.OUT, name = "outParam", type = String.class)
+                }),
+        @NamedStoredProcedureQuery(name = "delete_model",
+                procedureName = "delete_model_pkg.delete_model",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "carModelId", type = Long.class),
+                        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "MESSAGE", type = String.class)
                 })
 })
 public class CarModel {

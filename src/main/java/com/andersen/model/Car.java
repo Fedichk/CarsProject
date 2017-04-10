@@ -16,7 +16,9 @@ public class Car {
             @org.hibernate.annotations.Parameter(name = "sequenceName", value = "car_sequence"),
             @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
     })
+
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
+
     private Long id;
 
     private String carName;

@@ -1,0 +1,55 @@
+-- название департамента,
+-- кол работников,
+-- количество женщин,
+-- количество мужиков,
+-- средняя зп департамента,
+-- сред зп ж и м,
+-- фамили всех работников через запятую
+
+SELECT DISTINCT
+  DEPARTMENTS.NAME,
+  count(FIRSTNAME)
+  OVER (
+    PARTITION BY DEPID )           AS "sum_empl_by_dep",
+
+  count(CASE WHEN SEX LIKE 'MALE'
+    THEN 1 END)
+  OVER (
+    PARTITION BY DEPID )           AS "Count male",
+
+  count(CASE WHEN SEX LIKE 'FEMALE'
+    THEN 1 END)
+  OVER (
+    PARTITION BY DEPID )           AS "Count female",
+
+  round(avg(SALARY)
+        OVER (
+          PARTITION BY DEPID ), 2) AS "avg_dep_sal",
+
+  round(avg(CASE WHEN SEX LIKE 'MALE'
+    THEN SALARY END)
+        OVER (
+          PARTITION BY DEPID ), 2) AS "avg_dep_sal_male",
+
+  round(avg(CASE WHEN SEX LIKE 'FEMALE'
+    THEN SALARY END)
+        OVER (
+          PARTITION BY DEPID ), 2) AS "avg_dep_sal_female",
+
+  listagg(LASTNAME, ', ')
+  WITHIN GROUP (
+    ORDER BY LASTNAME)
+  OVER (
+    PARTITION BY DEPID )           AS "last name"
+
+FROM EMPLOYEES
+  LEFT JOIN DEPARTMENTS ON EMPLOYEES.DEPID = DEPARTMENTS.ID
+
+
+
+
+
+
+
+
+

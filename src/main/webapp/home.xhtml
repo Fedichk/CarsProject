@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <title>WEB App</title>
@@ -39,7 +39,7 @@
 
     <h2>Info about models: </h2>
 
-    <p:dataTable id="info" var="carModel" value="#{carController.targetCar.models}">
+    <p:dataTable id="info" var="carModel"  value="#{carController.targetCar.models}">
         <p:column headerText="ID">
             <h:outputText value="#{carModel.id}"/>
         </p:column>
@@ -51,6 +51,11 @@
         </p:column>
         <p:column headerText="MODEL PRICE">
             <h:outputText value="#{carModel.price}"/>
+        </p:column>
+        <p:column>
+            <h:form>
+                <h:commandButton value="Delete" action="#{carController.deleteModelByPlSql(carModel)}"/>
+            </h:form>
         </p:column>
     </p:dataTable>
 
@@ -70,8 +75,8 @@
         </p:panel>
         <p:messages showDetail="true" autoUpdate="true" closable="true"/>
     </h:form>
-
 </h:body>
 </html>
+
 
 
