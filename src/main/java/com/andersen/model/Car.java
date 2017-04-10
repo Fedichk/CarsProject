@@ -18,11 +18,8 @@ public class Car {
     })
 
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
-
     private Long id;
-
     private String carName;
-
     private String productionCountry;
 
     @OneToMany(fetch = FetchType.EAGER)

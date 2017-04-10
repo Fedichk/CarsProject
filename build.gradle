@@ -31,10 +31,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-security')
-//        exclude group:'ch.qos.logback', module: 'logback-classic'
-
     compile('org.springframework.boot:spring-boot-devtools')
-    compile('org.projectlombok:lombok')
     compile('com.oracle:ojdbc6:11.2.0.4')
     compile('com.sun.faces:jsf-api:2.2.14')
     compile('com.sun.faces:jsf-impl:2.2.14')
@@ -48,6 +45,8 @@ dependencies {
     compile('org.apache.logging.log4j:log4j-api:2.8.1')
     compile('org.apache.logging.log4j:log4j-core:2.8.1')
     compile('org.apache.logging.log4j:log4j-jcl:2.8.1')
+
+    provided('org.projectlombok:lombok')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

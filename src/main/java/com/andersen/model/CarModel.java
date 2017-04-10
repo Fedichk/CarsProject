@@ -33,11 +33,8 @@ public class CarModel {
     })
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String modelName;
-
     private Integer manufacturedYear;
-
     private Long price;
 
     @ManyToOne(fetch = FetchType.EAGER)
