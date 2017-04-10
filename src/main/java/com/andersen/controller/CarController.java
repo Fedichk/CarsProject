@@ -58,6 +58,7 @@ public class CarController {
         car.setCarName(carName);
         car.setProductionCountry(carProductionCountry);
         carRepository.saveAndFlush(car);
+        logger.info("Car saved");
     }
 
     public void saveModel() {
@@ -74,6 +75,7 @@ public class CarController {
         FacesContext.getCurrentInstance()
                 .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "", modelRepository.saveModel(modelName, modelYear, modelPrice, targetCar.getId())));
+        logger.info("Model saved");
     }
 
     @Secured("ROLE_ADMIN")
@@ -81,5 +83,6 @@ public class CarController {
         FacesContext.getCurrentInstance()
                 .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "", modelRepository.deleteModel(carModel.getId())));
+        logger.info("Model deleted");
     }
 }
